@@ -48,7 +48,7 @@
 
     /* --- Header Section --- */
     header {
-      margin-bottom: 32px;
+      margin-bottom: 24px;
       text-align: center;
       position: relative;
     }
@@ -95,6 +95,49 @@
       font-size: 12px;
     }
 
+    /* --- Main Tabs Section --- */
+    .tabs-container {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 12px;
+      overflow-x: auto;
+      scrollbar-width: none; /* Hide scrollbar for Firefox */
+    }
+
+    .tabs-container::-webkit-scrollbar {
+      display: none; /* Hide scrollbar for Chrome/Safari */
+    }
+
+    .main-tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-family: var(--font-title);
+      font-size: 15px;
+      font-weight: 600;
+      padding: 10px 18px;
+      cursor: pointer;
+      border-radius: 10px;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .main-tab-btn:hover {
+      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .main-tab-btn.active {
+      color: var(--accent);
+      background: rgba(139, 124, 246, 0.1);
+      box-shadow: inset 0 0 0 1px rgba(139, 124, 246, 0.2);
+    }
+
     /* --- Controls Section --- */
     .controls {
       background: var(--card-bg);
@@ -102,10 +145,10 @@
       border-radius: 16px;
       padding: 16px;
       backdrop-filter: blur(12px);
-      margin-bottom: 24px;
+      margin-bottom: 30px;
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 14px;
     }
 
     .search-row {
@@ -119,7 +162,7 @@
       background: rgba(11, 15, 25, 0.6);
       border: 1px solid var(--card-border);
       border-radius: 10px;
-      padding: 12px 16px 12px 42px;
+      padding: 11px 16px 11px 42px;
       color: var(--text-main);
       font-family: var(--font-sans);
       font-size: 14px;
@@ -190,6 +233,34 @@
       font-weight: 600;
     }
 
+    /* --- Breakdown Sections --- */
+    .category-section {
+      margin-bottom: 44px;
+    }
+
+    .category-section-title {
+      font-family: var(--font-title);
+      font-size: 19px;
+      font-weight: 700;
+      margin-bottom: 18px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-main);
+    }
+
+    .category-section-title span.count {
+      font-size: 12px;
+      color: var(--accent-text);
+      background: rgba(139, 124, 246, 0.15);
+      border: 1px solid rgba(139, 124, 246, 0.2);
+      padding: 1px 8px;
+      border-radius: 20px;
+      font-weight: 600;
+    }
+
     /* --- Grid Section --- */
     .grid {
       display: grid;
@@ -220,13 +291,13 @@
     .card-header {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
+      align-items: center;
       margin-bottom: 12px;
       gap: 8px;
     }
 
     .source-badge {
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: 600;
       padding: 4px 10px;
       border-radius: 30px;
@@ -245,23 +316,12 @@
     }
 
     .card-title {
-      font-family: var(--font-title);
-      font-size: 17px;
+      font-family: var(--font-sans);
+      font-size: 16.5px;
       font-weight: 600;
-      line-height: 1.4;
-      margin-bottom: 10px;
+      line-height: 1.45;
+      margin-bottom: 12px;
       color: var(--text-main);
-    }
-
-    .card-title a {
-      color: inherit;
-      text-decoration: none;
-      transition: color 0.15s ease;
-    }
-
-    .card-title a:hover {
-      color: var(--accent);
-      text-decoration: underline;
     }
 
     .card-desc {
@@ -289,7 +349,7 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      max-width: 150px;
+      max-width: 140px;
     }
 
     .target-badges {
@@ -301,11 +361,34 @@
     .target-badge {
       font-size: 10px;
       font-weight: 500;
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(255, 255, 255, 0.04);
       color: var(--text-muted);
-      padding: 2px 8px;
+      padding: 2px 6px;
       border-radius: 4px;
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .source-link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(139, 124, 246, 0.1);
+      border: 1px solid rgba(139, 124, 246, 0.2);
+      color: #c4b8ff;
+      padding: 5px 12px;
+      border-radius: 6px;
+      font-size: 11.5px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .source-link-btn:hover {
+      background: var(--accent);
+      color: #0b0f19;
+      border-color: var(--accent);
+      box-shadow: 0 0 8px var(--accent-glow);
     }
 
     /* --- Status Board / Empty State --- */
@@ -314,6 +397,7 @@
       padding: 60px 20px;
       color: var(--text-muted);
       grid-column: 1 / -1;
+      width: 100%;
     }
 
     .empty-state-icon {
@@ -368,6 +452,12 @@
       </div>
     </header>
 
+    <div class="tabs-container" id="mainTabs">
+      <button class="main-tab-btn active" data-tab="trends">📈 世の中のトレンド</button>
+      <button class="main-tab-btn" data-tab="research">🧠 AIカスタムリサーチ</button>
+      <button class="main-tab-btn" data-tab="announcements">🛍️ 新商品・発表リスト</button>
+    </div>
+
     <div class="controls">
       <div class="search-row">
         <span class="search-icon">🔍</span>
@@ -375,7 +465,7 @@
       </div>
 
       <div class="filter-group">
-        <div class="filter-label">カテゴリ</div>
+        <div class="filter-label">内訳カテゴリ</div>
         <div class="filter-buttons" id="categoryFilters">
           <button class="filter-btn active" data-category="all">すべて</button>
         </div>
@@ -392,13 +482,13 @@
       </div>
     </div>
 
-    <div class="grid" id="cardGrid">
-      <!-- Cards dynamically rendered by JavaScript -->
+    <div id="dashboardSections">
+      <!-- Grouped categories with sections and grids rendered by JS -->
     </div>
   </div>
 
   <footer>
-    Generated at 2026-08-29 15:26 | Offline Client Dashboard
+    Generated at 2026-08-29 15:37 | Client Dashboard
   </footer>
 
   <script>
@@ -1238,34 +1328,57 @@
   }
 };
 
+    // Tab categories configuration
+    const tabConfig = {
+      trends: ['google_trends', 'hacker_news', 'hatena_hot', 'hatena_new'],
+      research: ['active_research', 'adjacent_research'],
+      announcements: ['new_products', 'events', 'projects', 'laws']
+    };
+
+    let activeTab = 'trends';
     let activeCategory = 'all';
     let activeTarget = 'all';
     let searchQuery = '';
 
-    const cardGrid = document.getElementById('cardGrid');
+    const mainTabs = document.getElementById('mainTabs');
+    const dashboardSections = document.getElementById('dashboardSections');
     const searchInput = document.getElementById('searchInput');
     const categoryFilters = document.getElementById('categoryFilters');
     const targetFilters = document.getElementById('targetFilters');
 
-    // Create Category Filter Buttons dynamically
-    const categoriesPresent = [...new Set(items.map(item => item.category))];
-    categoriesPresent.forEach(cat => {
-      const meta = categoryMeta[cat];
-      if (meta) {
-        const btn = document.createElement('button');
-        btn.className = 'filter-btn';
-        btn.dataset.category = cat;
-        btn.innerHTML = `${meta.icon} ${meta.label}`;
-        categoryFilters.appendChild(btn);
-      }
-    });
-
-    // Render Cards Function
-    function renderCards() {
-      cardGrid.innerHTML = '';
+    // Create Category Filter Buttons dynamically based on active tab
+    function updateCategoryFilters() {
+      // Keep "All" button
+      categoryFilters.innerHTML = '<button class="filter-btn active" data-category="all">すべて</button>';
       
+      const allowedCategories = tabConfig[activeTab];
+      const categoriesPresent = [...new Set(items.map(item => item.category))].filter(cat => allowedCategories.includes(cat));
+      
+      categoriesPresent.forEach(cat => {
+        const meta = categoryMeta[cat];
+        if (meta) {
+          const btn = document.createElement('button');
+          btn.className = 'filter-btn';
+          btn.dataset.category = cat;
+          btn.innerHTML = `${meta.icon} ${meta.label}`;
+          categoryFilters.appendChild(btn);
+        }
+      });
+      
+      activeCategory = 'all';
+    }
+
+    // Render Cards Grouped by Category (Breakdown Style)
+    function renderDashboard() {
+      dashboardSections.innerHTML = '';
+      const allowedCategories = tabConfig[activeTab];
+      
+      // 1. Filter items globally
       const filtered = items.filter(item => {
-        // Filter by category
+        // Filter by current Tab's categories
+        if (!allowedCategories.includes(item.category)) return false;
+        
+        // Filter by Sub-category pill
         if (activeCategory !== 'all' && item.category !== activeCategory) return false;
         
         // Filter by target audience
@@ -1286,58 +1399,98 @@
       });
 
       if (filtered.length === 0) {
-        cardGrid.innerHTML = `
+        dashboardSections.innerHTML = `
           <div class="empty-state">
             <div class="empty-state-icon">📭</div>
-            <h3>一致するトピックが見つかりません</h3>
+            <h3>該当するトピックが見つかりません</h3>
             <p>検索ワードやフィルター条件を変更してください。</p>
           </div>
         `;
         return;
       }
 
-      filtered.forEach(item => {
-        const meta = categoryMeta[item.category] || { label: 'その他', bg: 'rgba(255,255,255,0.05)', color: '#fff', icon: '📝' };
-        
-        const card = document.createElement('div');
-        card.className = 'card';
-        
-        // Title HTML
-        const titleHTML = item.url 
-          ? `<a href="${item.url}" target="_blank" rel="noopener noreferrer">${item.title}</a>`
-          : item.title;
+      // 2. Render sections based on active category selection
+      const categoriesToRender = activeCategory === 'all' 
+        ? allowedCategories 
+        : [activeCategory];
 
-        // Target badges
-        const targetHTML = item.targets && item.targets.length > 0
-          ? item.targets.map(t => `<span class="target-badge">${t}</span>`).join('')
-          : '';
+      categoriesToRender.forEach(cat => {
+        const catItems = filtered.filter(item => item.category === cat);
+        if (catItems.length === 0) return; // Skip empty categories
 
-        // Publisher or extra indicator
-        const pubLabel = item.publisher 
-          ? `🌐 ${item.publisher}` 
-          : (item.extra && !item.extra.includes('検索数:') ? item.extra : '');
+        const meta = categoryMeta[cat] || { label: 'その他', bg: 'rgba(255,255,255,0.05)', color: '#fff', icon: '📝' };
 
-        card.innerHTML = `
-          <div class="card-header">
-            <span class="source-badge" style="background: ${meta.bg}; color: ${meta.color};">
-              ${meta.icon} ${meta.label}
-            </span>
-            ${item.extra && item.extra.includes('検索数:') ? `<span class="extra-badge">${item.extra}</span>` : ''}
-          </div>
-          <h3 class="card-title">${titleHTML}</h3>
-          <p class="card-desc">${item.desc || '（詳細要約はありません）'}</p>
-          <div class="card-footer">
-            <span class="publisher-label" title="${pubLabel}">${pubLabel}</span>
-            <div class="target-badges">
-              ${targetHTML}
-            </div>
+        // Create Section
+        const section = document.createElement('div');
+        section.className = 'category-section';
+
+        // Section Title
+        section.innerHTML = `
+          <div class="category-section-title">
+            ${meta.icon} ${meta.label} <span class="count">${catItems.length}</span>
           </div>
         `;
-        cardGrid.appendChild(card);
+
+        // Card Grid
+        const grid = document.createElement('div');
+        grid.className = 'grid';
+
+        // Add Cards
+        catItems.forEach(item => {
+          const card = document.createElement('div');
+          card.className = 'card';
+
+          const targetHTML = item.targets && item.targets.length > 0
+            ? item.targets.map(t => `<span class="target-badge">${t}</span>`).join('')
+            : '';
+
+          const pubLabel = item.publisher 
+            ? `🌐 ${item.publisher}` 
+            : (item.extra && !item.extra.includes('検索数:') ? item.extra : '');
+
+          const linkHTML = item.url
+            ? `<a href="${item.url}" target="_blank" rel="noopener noreferrer" class="source-link-btn">ソースを開く ↗</a>`
+            : '';
+
+          card.innerHTML = `
+            <div class="card-header">
+              <span class="source-badge" style="background: ${meta.bg}; color: ${meta.color};">
+                ${meta.icon} ${meta.label}
+              </span>
+              ${item.extra && item.extra.includes('検索数:') ? `<span class="extra-badge">${item.extra}</span>` : ''}
+            </div>
+            <h3 class="card-title">${item.title}</h3>
+            <p class="card-desc">${item.desc || '（詳細要約はありません）'}</p>
+            <div class="card-footer">
+              <span class="publisher-label" title="${pubLabel}">${pubLabel}</span>
+              <div class="target-badges" style="margin-right: 8px;">
+                ${targetHTML}
+              </div>
+              ${linkHTML}
+            </div>
+          `;
+          grid.appendChild(card);
+        });
+
+        section.appendChild(grid);
+        dashboardSections.appendChild(section);
       });
     }
 
-    // Event Listeners for Filters
+    // Event Listeners for Main Tabs
+    mainTabs.addEventListener('click', (e) => {
+      const btn = e.target.closest('.main-tab-btn');
+      if (!btn || btn.classList.contains('active')) return;
+      
+      mainTabs.querySelectorAll('.main-tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeTab = btn.dataset.tab;
+      
+      updateCategoryFilters();
+      renderDashboard();
+    });
+
+    // Event Listeners for Sub-category filters
     categoryFilters.addEventListener('click', (e) => {
       const btn = e.target.closest('.filter-btn');
       if (!btn) return;
@@ -1345,9 +1498,10 @@
       categoryFilters.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       activeCategory = btn.dataset.category;
-      renderCards();
+      renderDashboard();
     });
 
+    // Event Listeners for Target filters
     targetFilters.addEventListener('click', (e) => {
       const btn = e.target.closest('.filter-btn');
       if (!btn) return;
@@ -1355,16 +1509,17 @@
       targetFilters.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       activeTarget = btn.dataset.target;
-      renderCards();
+      renderDashboard();
     });
 
     searchInput.addEventListener('input', (e) => {
       searchQuery = e.target.value;
-      renderCards();
+      renderDashboard();
     });
 
-    // Initial render
-    renderCards();
+    // Initial load
+    updateCategoryFilters();
+    renderDashboard();
   </script>
 </body>
 </html>
