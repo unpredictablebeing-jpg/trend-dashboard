@@ -6,19 +6,34 @@
   <title>Trend Intelligence Portal</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
+      /* Base Colors - High Contrast Dark Mode */
       --bg-color: #0b0f19;
-      --card-bg: rgba(22, 30, 49, 0.65);
-      --card-border: rgba(34, 47, 75, 0.6);
-      --card-hover-border: rgba(139, 124, 246, 0.6);
-      --text-main: #f3f4f6;
-      --text-muted: #9ca3af;
-      --text-dark: #6b7280;
-      --accent: #8b7cf6;
-      --accent-glow: rgba(139, 124, 246, 0.25);
-      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --surface-controls: #131b2d;
+      --surface-controls-border: #23324f;
+      
+      /* Record Colors - Clearly separated from background */
+      --record-bg: #162033;
+      --record-bg-hover: #1e2c45;
+      --record-border: #263859;
+      --record-border-hover: #6366f1;
+      
+      /* Typography & Text */
+      --text-title: #f8fafc;
+      --text-title-hover: #818cf8;
+      --text-body: #cbd5e1;
+      --text-muted: #94a3b8;
+      --text-sub: #64748b;
+      
+      /* Accents */
+      --accent: #6366f1;
+      --accent-light: #818cf8;
+      --accent-glow: rgba(99, 102, 241, 0.3);
+      
+      /* Fonts */
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       --font-title: 'Outfit', 'Inter', sans-serif;
     }
 
@@ -30,27 +45,26 @@
 
     body {
       background-color: var(--bg-color);
-      color: var(--text-main);
+      color: var(--text-body);
       font-family: var(--font-sans);
       min-height: 100vh;
-      padding: 24px 16px;
-      line-height: 1.5;
+      padding: 24px 16px 60px;
+      line-height: 1.6;
       background-image: 
-        radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.05) 0%, transparent 40%),
-        radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.05) 0%, transparent 40%);
+        radial-gradient(circle at 15% 15%, rgba(99, 102, 241, 0.08) 0%, transparent 45%),
+        radial-gradient(circle at 85% 85%, rgba(139, 92, 246, 0.08) 0%, transparent 45%);
       background-attachment: fixed;
     }
 
     .container {
-      max-width: 1400px;
+      max-width: 1280px;
       margin: 0 auto;
     }
 
-    /* --- Header Section --- */
+    /* --- Header --- */
     header {
       margin-bottom: 24px;
       text-align: center;
-      position: relative;
     }
 
     .header-logo {
@@ -59,65 +73,66 @@
       gap: 10px;
       font-family: var(--font-title);
       font-weight: 800;
-      font-size: 28px;
+      font-size: 30px;
       background: linear-gradient(135deg, #a855f7 0%, #6366f1 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       letter-spacing: -0.02em;
     }
 
     .header-logo .dot {
-      width: 10px;
-      height: 10px;
+      width: 11px;
+      height: 11px;
       border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 12px var(--accent);
+      background: #8b5cf6;
+      box-shadow: 0 0 12px #8b5cf6;
       display: inline-block;
     }
 
     .header-subtitle {
       color: var(--text-muted);
-      font-size: 14px;
-      font-weight: 400;
+      font-size: 13.5px;
       display: flex;
       justify-content: center;
-      gap: 16px;
+      gap: 14px;
       flex-wrap: wrap;
-      margin-top: 6px;
+      margin-top: 4px;
     }
 
     .date-badge {
-      background: rgba(34, 47, 75, 0.4);
-      padding: 3px 10px;
+      background: #151d30;
+      padding: 4px 12px;
       border-radius: 20px;
-      border: 1px solid var(--card-border);
+      border: 1px solid #23324f;
       font-size: 12px;
+      color: var(--text-body);
+      font-weight: 500;
     }
 
-    /* --- Main Tabs Section --- */
+    /* --- Main Tabs --- */
     .tabs-container {
       display: flex;
-      gap: 6px;
+      gap: 8px;
       margin-bottom: 20px;
-      border-bottom: 1px solid var(--card-border);
+      border-bottom: 1px solid var(--surface-controls-border);
       padding-bottom: 12px;
       overflow-x: auto;
-      scrollbar-width: none; /* Hide scrollbar for Firefox */
+      scrollbar-width: none;
     }
 
     .tabs-container::-webkit-scrollbar {
-      display: none; /* Hide scrollbar for Chrome/Safari */
+      display: none;
     }
 
     .main-tab-btn {
       background: transparent;
-      border: none;
+      border: 1px solid transparent;
       color: var(--text-muted);
       font-family: var(--font-title);
       font-size: 15px;
       font-weight: 600;
-      padding: 10px 18px;
+      padding: 10px 20px;
       cursor: pointer;
       border-radius: 10px;
       transition: all 0.2s ease;
@@ -128,27 +143,28 @@
     }
 
     .main-tab-btn:hover {
-      color: var(--text-main);
-      background: rgba(255, 255, 255, 0.03);
+      color: var(--text-title);
+      background: rgba(255, 255, 255, 0.04);
     }
 
     .main-tab-btn.active {
-      color: var(--accent);
-      background: rgba(139, 124, 246, 0.1);
-      box-shadow: inset 0 0 0 1px rgba(139, 124, 246, 0.2);
+      color: #ffffff;
+      background: #4f46e5;
+      border-color: #6366f1;
+      box-shadow: 0 4px 14px var(--accent-glow);
     }
 
-    /* --- Controls Section --- */
+    /* --- Controls Panel (High Contrast) --- */
     .controls {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 16px;
-      padding: 16px;
-      backdrop-filter: blur(12px);
-      margin-bottom: 30px;
+      background: var(--surface-controls);
+      border: 1px solid var(--surface-controls-border);
+      border-radius: 14px;
+      padding: 18px 20px;
+      margin-bottom: 28px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 16px;
     }
 
     .search-row {
@@ -159,11 +175,11 @@
 
     .search-input {
       width: 100%;
-      background: rgba(11, 15, 25, 0.6);
-      border: 1px solid var(--card-border);
-      border-radius: 10px;
-      padding: 11px 16px 11px 42px;
-      color: var(--text-main);
+      background: #0d1320;
+      border: 1px solid var(--surface-controls-border);
+      border-radius: 9px;
+      padding: 11px 16px 11px 44px;
+      color: var(--text-title);
       font-family: var(--font-sans);
       font-size: 14px;
       outline: none;
@@ -172,16 +188,17 @@
 
     .search-input:focus {
       border-color: var(--accent);
-      box-shadow: 0 0 10px var(--accent-glow);
+      background: #111827;
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
     }
 
     .search-icon {
       position: absolute;
-      left: 16px;
+      left: 15px;
       top: 50%;
       transform: translateY(-50%);
       color: var(--text-muted);
-      font-size: 14px;
+      font-size: 16px;
       pointer-events: none;
     }
 
@@ -191,12 +208,18 @@
       gap: 8px;
     }
 
+    .filter-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
     .filter-label {
-      font-size: 11px;
+      font-size: 11.5px;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.06em;
       color: var(--text-muted);
-      font-weight: 600;
+      font-weight: 700;
     }
 
     .filter-buttons {
@@ -206,232 +229,322 @@
     }
 
     .filter-btn {
-      background: rgba(34, 47, 75, 0.4);
-      border: 1px solid var(--card-border);
-      color: var(--text-muted);
+      background: #1a253a;
+      border: 1px solid #283a5c;
+      color: var(--text-body);
       padding: 6px 14px;
-      border-radius: 30px;
+      border-radius: 20px;
       font-size: 13px;
       font-weight: 500;
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: all 0.15s ease;
       display: inline-flex;
       align-items: center;
       gap: 6px;
     }
 
     .filter-btn:hover {
-      background: rgba(34, 47, 75, 0.8);
-      color: var(--text-main);
-      border-color: var(--text-muted);
+      background: #233350;
+      border-color: #3b527e;
+      color: var(--text-title);
     }
 
     .filter-btn.active {
       background: var(--accent);
-      color: #0b0f19;
+      color: #ffffff;
       border-color: var(--accent);
       font-weight: 600;
+      box-shadow: 0 2px 8px var(--accent-glow);
     }
 
-    /* --- Breakdown Sections --- */
+    /* --- Results Header Bar --- */
+    .results-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      padding: 0 4px;
+    }
+
+    .results-count {
+      font-size: 14px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .results-count strong {
+      color: var(--text-title);
+      font-weight: 700;
+    }
+
+    /* --- Category Section --- */
     .category-section {
-      margin-bottom: 44px;
+      margin-bottom: 36px;
     }
 
     .category-section-title {
       font-family: var(--font-title);
-      font-size: 19px;
+      font-size: 18px;
       font-weight: 700;
-      margin-bottom: 18px;
+      margin-bottom: 14px;
       padding-bottom: 8px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      border-bottom: 1px solid #1e2c47;
       display: flex;
       align-items: center;
       gap: 8px;
-      color: var(--text-main);
+      color: var(--text-title);
     }
 
     .category-section-title span.count {
-      font-size: 12px;
-      color: var(--accent-text);
-      background: rgba(139, 124, 246, 0.15);
-      border: 1px solid rgba(139, 124, 246, 0.2);
+      font-size: 11.5px;
+      color: #c7d2fe;
+      background: rgba(99, 102, 241, 0.2);
+      border: 1px solid rgba(99, 102, 241, 0.35);
       padding: 1px 8px;
-      border-radius: 20px;
+      border-radius: 12px;
       font-weight: 600;
     }
 
-    /* --- Grid Section --- */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-      gap: 20px;
-    }
-
-    /* --- Card Component --- */
-    .card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 16px;
-      padding: 20px;
-      backdrop-filter: blur(12px);
-      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    /* --- RECORD LIST (Proposal A: Horizontal Stripe Format) --- */
+    .record-list {
       display: flex;
       flex-direction: column;
+      gap: 12px;
+    }
+
+    .record-row {
+      background: var(--record-bg);
+      border: 1px solid var(--record-border);
+      border-radius: 12px;
+      padding: 16px 20px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 20px;
+      align-items: flex-start;
       position: relative;
       overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
     }
 
-    .card:hover {
-      transform: translateY(-4px);
-      border-color: var(--card-hover-border);
-      box-shadow: 0 12px 24px -10px var(--accent-glow);
+    .record-row:hover {
+      background: var(--record-bg-hover);
+      border-color: var(--record-border-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), 0 0 0 1px var(--record-border-hover);
     }
 
-    .card-header {
+    /* Left Accent Stripe */
+    .record-row::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 5px;
+      background: var(--cat-accent, var(--accent));
+      border-top-left-radius: 12px;
+      border-bottom-left-radius: 12px;
+    }
+
+    .record-content {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 12px;
+      flex-direction: column;
       gap: 8px;
+      min-width: 0;
+      padding-left: 2px;
     }
 
-    .source-badge {
-      font-size: 10.5px;
+    /* Upper Meta Row */
+    .record-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .cat-badge {
+      font-size: 11px;
       font-weight: 600;
-      padding: 4px 10px;
-      border-radius: 30px;
+      padding: 2px 9px;
+      border-radius: 6px;
       display: inline-flex;
       align-items: center;
       gap: 5px;
     }
 
-    .extra-badge {
-      font-size: 11px;
-      background: rgba(34, 47, 75, 0.5);
-      border: 1px solid var(--card-border);
-      color: var(--text-muted);
-      padding: 2px 8px;
+    .extra-tag {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      padding: 1px 8px;
       border-radius: 6px;
     }
 
-    .card-title {
-      font-family: var(--font-sans);
-      font-size: 16.5px;
-      font-weight: 600;
-      line-height: 1.45;
-      margin-bottom: 12px;
-      color: var(--text-main);
+    .publisher-tag {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
     }
 
-    .card-desc {
-      font-size: 13.5px;
-      color: var(--text-muted);
-      line-height: 1.6;
-      margin-bottom: 16px;
-      flex: 1;
+    /* Main Title */
+    .record-title {
+      font-size: 16.5px;
+      font-weight: 700;
+      line-height: 1.45;
+      color: var(--text-title);
+      word-break: break-word;
+    }
+
+    .record-title a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+
+    .record-title a:hover {
+      color: var(--text-title-hover);
+      text-decoration: underline;
+    }
+
+    /* Original Title (for English items) */
+    .record-original-title {
+      font-size: 12px;
+      color: var(--text-sub);
+      line-height: 1.4;
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
       word-break: break-all;
     }
 
-    .card-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: auto;
-      padding-top: 12px;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-      gap: 8px;
+    .record-original-title .orig-label {
+      background: rgba(255, 255, 255, 0.06);
+      padding: 1px 5px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--text-muted);
+      flex-shrink: 0;
     }
 
-    .publisher-label {
-      font-size: 11px;
-      color: var(--text-dark);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      max-width: 140px;
+    /* Summary Description */
+    .record-summary {
+      font-size: 13.5px;
+      color: var(--text-body);
+      line-height: 1.65;
+      word-break: break-word;
+      background: rgba(11, 15, 25, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin-top: 2px;
+    }
+
+    /* Right Action Area */
+    .record-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 12px;
+      flex-shrink: 0;
+      padding-top: 2px;
     }
 
     .target-badges {
       display: flex;
       gap: 4px;
       flex-wrap: wrap;
+      justify-content: flex-end;
     }
 
     .target-badge {
-      font-size: 10px;
-      font-weight: 500;
-      background: rgba(255, 255, 255, 0.04);
-      color: var(--text-muted);
-      padding: 2px 6px;
-      border-radius: 4px;
-      border: 1px solid rgba(255, 255, 255, 0.04);
-    }
-
-    .source-link-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      background: rgba(139, 124, 246, 0.1);
-      border: 1px solid rgba(139, 124, 246, 0.2);
-      color: #c4b8ff;
-      padding: 5px 12px;
-      border-radius: 6px;
-      font-size: 11.5px;
-      text-decoration: none;
+      font-size: 10.5px;
       font-weight: 600;
-      transition: all 0.2s ease;
+      background: #1e2c45;
+      color: #93c5fd;
+      border: 1px solid #2d4268;
+      padding: 2px 7px;
+      border-radius: 6px;
       white-space: nowrap;
     }
 
-    .source-link-btn:hover {
-      background: var(--accent);
-      color: #0b0f19;
-      border-color: var(--accent);
-      box-shadow: 0 0 8px var(--accent-glow);
+    .source-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: #23314f;
+      border: 1px solid #364b73;
+      color: #c7d2fe;
+      padding: 7px 14px;
+      border-radius: 8px;
+      font-size: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.15s ease;
+      white-space: nowrap;
     }
 
-    /* --- Status Board / Empty State --- */
+    .source-btn:hover {
+      background: #4f46e5;
+      border-color: #6366f1;
+      color: #ffffff;
+      box-shadow: 0 2px 10px var(--accent-glow);
+    }
+
+    /* Empty State */
     .empty-state {
       text-align: center;
       padding: 60px 20px;
       color: var(--text-muted);
-      grid-column: 1 / -1;
-      width: 100%;
+      background: var(--surface-controls);
+      border: 1px dashed var(--surface-controls-border);
+      border-radius: 14px;
     }
 
     .empty-state-icon {
-      font-size: 48px;
-      margin-bottom: 16px;
-      opacity: 0.5;
+      font-size: 44px;
+      margin-bottom: 12px;
+      opacity: 0.6;
+    }
+
+    .empty-state h3 {
+      font-size: 17px;
+      color: var(--text-title);
+      margin-bottom: 6px;
     }
 
     footer {
       margin-top: 60px;
       text-align: center;
-      font-size: 11px;
-      color: var(--text-dark);
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-      padding-top: 20px;
+      font-size: 12px;
+      color: var(--text-sub);
+      border-top: 1px solid var(--surface-controls-border);
+      padding-top: 24px;
     }
 
-    /* --- Responsive design --- */
+    /* Responsive */
     @media (max-width: 768px) {
       body {
-        padding: 16px 8px;
+        padding: 16px 8px 40px;
       }
-      .controls {
-        padding: 12px;
-      }
-      .filter-buttons {
-        gap: 6px;
-      }
-      .filter-btn {
-        font-size: 12px;
-        padding: 5px 12px;
-      }
-      .grid {
+      .record-row {
         grid-template-columns: 1fr;
+        padding: 14px 16px;
+        gap: 12px;
+      }
+      .record-actions {
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        padding-top: 10px;
       }
       .header-logo {
         font-size: 24px;
@@ -444,35 +557,41 @@
     <header>
       <div class="header-logo">
         <span class="dot"></span>
-        Trend Intelligence
+        Trend Intelligence Portal
       </div>
       <div class="header-subtitle">
-        <span class="date-badge">📊 トレンド: 2026-09-13</span>
-        <span class="date-badge">🛍️ 発表リスト: 2026-09-12</span>
+        <span class="date-badge">📊 世の中のトレンド: 2026-09-13</span>
+        <span class="date-badge">🛍️ 新商品・発表: 2026-09-12</span>
       </div>
     </header>
 
+    <!-- Main Tabs -->
     <div class="tabs-container" id="mainTabs">
       <button class="main-tab-btn active" data-tab="trends">📈 世の中のトレンド</button>
       <button class="main-tab-btn" data-tab="research">🧠 AIカスタムリサーチ</button>
       <button class="main-tab-btn" data-tab="announcements">🛍️ 新商品・発表リスト</button>
     </div>
 
+    <!-- Filter & Search Controls -->
     <div class="controls">
       <div class="search-row">
         <span class="search-icon">🔍</span>
-        <input type="text" id="searchInput" class="search-input" placeholder="キーワードで絞り込み...">
+        <input type="text" id="searchInput" class="search-input" placeholder="和訳タイトル・英語原文・要約・キーワードで絞り込み...">
       </div>
 
       <div class="filter-group">
-        <div class="filter-label">内訳カテゴリ</div>
+        <div class="filter-header">
+          <span class="filter-label">内訳カテゴリ</span>
+        </div>
         <div class="filter-buttons" id="categoryFilters">
           <button class="filter-btn active" data-category="all">すべて</button>
         </div>
       </div>
 
       <div class="filter-group">
-        <div class="filter-label">対象層</div>
+        <div class="filter-header">
+          <span class="filter-label">対象層</span>
+        </div>
         <div class="filter-buttons" id="targetFilters">
           <button class="filter-btn active" data-target="all">すべて</button>
           <button class="filter-btn" data-target="社会人">社会人</button>
@@ -482,27 +601,37 @@
       </div>
     </div>
 
+    <!-- Results Status Bar -->
+    <div class="results-bar">
+      <div class="results-count" id="resultsCount">
+        読み込み中...
+      </div>
+    </div>
+
+    <!-- Records List Container -->
     <div id="dashboardSections">
-      <!-- Grouped categories with sections and grids rendered by JS -->
+      <!-- Records rendered via JavaScript -->
     </div>
   </div>
 
   <footer>
-    Generated at 2026-09-13 19:15 | Client Dashboard
+    Trend Intelligence Portal | 最終更新: 2026-09-22 17:13 | Generated by Antigravity
   </footer>
 
   <script>
-    // Embedded JSON data
+    // Embedded Data
     const items = [
   {
     "title": "若隆景",
     "url": "",
     "publisher": "",
     "extra": "検索数: 500+",
-    "desc": "",
+    "desc": "Googleで急上昇中のトレンドワード「若隆景」に関するリサーチ結果です。",
     "targets": [],
     "category": "google_trends",
-    "icon": "🔍"
+    "icon": "🔍",
+    "title_ja": "若隆景",
+    "title_en": ""
   },
   {
     "title": "オールカマー",
@@ -512,7 +641,9 @@
     "desc": "【オールカマー想定馬・騎手】レガレイラ、エセルフリーダなど12頭（netkeiba）",
     "targets": [],
     "category": "google_trends",
-    "icon": "🔍"
+    "icon": "🔍",
+    "title_ja": "オールカマー",
+    "title_en": ""
   },
   {
     "title": "ボビー・ダルベック",
@@ -522,17 +653,21 @@
     "desc": "【巨人】「焼肉奢って貰えるぐらい神プレー」 ダルベック、天王山最後の捕球に称賛 「地味に映るけどファインプレーよ」",
     "targets": [],
     "category": "google_trends",
-    "icon": "🔍"
+    "icon": "🔍",
+    "title_ja": "ボビー・ダルベック",
+    "title_en": ""
   },
   {
     "title": "vod",
     "url": "https://pilot.wp.pl/program-tv/serial/konflikt-a829401c411943d9b1eb634bc111656c",
     "publisher": "",
     "extra": "検索数: 500+",
-    "desc": "Program tv dla Konflikt , odc. 1/6",
+    "desc": "Program tv dla Konflikt, odc. 1/6",
     "targets": [],
     "category": "google_trends",
-    "icon": "🔍"
+    "icon": "🔍",
+    "title_ja": "vod",
+    "title_en": ""
   },
   {
     "title": "神戸新聞杯",
@@ -542,7 +677,9 @@
     "desc": "【松山弘平コラム】ロブチェンは神戸新聞杯に向けいい準備ができているなと感じています セントライト記念のサヴォアフェールは自在性が強み（中日スポーツ）",
     "targets": [],
     "category": "google_trends",
-    "icon": "🔍"
+    "icon": "🔍",
+    "title_ja": "神戸新聞杯",
+    "title_en": ""
   },
   {
     "title": "中学受験",
@@ -552,57 +689,69 @@
     "desc": "【中学受験】「公立中なんか行って大丈夫なの？」2年の塾通いを経て親子が判断した「撤退ライン」（デイリー新潮）",
     "targets": [],
     "category": "google_trends",
-    "icon": "🔍"
+    "icon": "🔍",
+    "title_ja": "中学受験",
+    "title_en": ""
   },
   {
     "title": "The Interim Computer Museum",
     "url": "https://icm.museum/",
     "publisher": "Hacker News",
     "extra": "(Hacker News)",
-    "desc": "",
+    "desc": "Interim Computer Museum （ ICM ）は、現代的な拡張機能を備えたヴィンテージハードウェアを使用したインタラクティブな展示を通じて、コンピューティングの歴史を保存し、共有するよう努めています。私たちの展示は、ハンズオンeを提供します",
     "targets": [],
     "category": "hacker_news",
-    "icon": "🌐"
+    "icon": "🌐",
+    "title_ja": "暫定コンピュータ博物館",
+    "title_en": "The Interim Computer Museum"
   },
   {
     "title": "Why are AI agents lying, cheating and coordinating?",
     "url": "https://yoshuabengio.org/en/publication/why-are-ai-agents-lying-cheating-and-coordinating",
     "publisher": "Hacker News",
     "extra": "(Hacker News)",
-    "desc": "",
+    "desc": "ここ数カ月、AIエージェントが深刻な行動をとったインシデントについては、多くの記事が書かれています。彼らは、人間が彼らを取って逃げた場合に犯罪と見なされる行動をとりました",
     "targets": [],
     "category": "hacker_news",
-    "icon": "🌐"
+    "icon": "🌐",
+    "title_ja": "AIエージェントが嘘をつき、不正行為をし、協力しているのはなぜですか？",
+    "title_en": "Why are AI agents lying, cheating and coordinating?"
   },
   {
     "title": "Make your first edit to OpenStreetMap",
     "url": "https://high5apps.github.io/josm-plugin-website-wizard/",
     "publisher": "Hacker News",
     "extra": "(Hacker News)",
-    "desc": "",
+    "desc": "ウェブサイトウィザードJOSMプラグイン",
     "targets": [],
     "category": "hacker_news",
-    "icon": "🌐"
+    "icon": "🌐",
+    "title_ja": "OpenStreetMapで最初の編集を行う",
+    "title_en": "Make your first edit to OpenStreetMap"
   },
   {
     "title": "Real-SWE: Benchmarking AI models on private, real-world, enterprise codebases",
     "url": "https://withspecific.com/benchmarks/real-swe",
     "publisher": "Hacker News",
     "extra": "(Hacker News)",
-    "desc": "",
+    "desc": "Real - SWEは、実際の企業からライセンス供与されたプライベートプロダクションのコードベースで、最先端のAIモデルをベンチマークします。8つのモデルとハーネス構成、10のタスク、640スコアのロールアウト。",
     "targets": [],
     "category": "hacker_news",
-    "icon": "🌐"
+    "icon": "🌐",
+    "title_ja": "Real - SWE ：プライベート、実世界、エンタープライズのコードベースでのAIモデルのベンチマーク",
+    "title_en": "Real-SWE: Benchmarking AI models on private, real-world, enterprise codebases"
   },
   {
     "title": "I Made a Non-Wi-Fi Mitsubishi AC Smart with an ESP32",
     "url": "https://medium.com/@ivangomezarnedo/how-i-added-a-non-wi-fi-mitsubishi-ac-to-home-assistant-22770661dd77",
     "publisher": "Hacker News",
     "extra": "(Hacker News)",
-    "desc": "",
+    "desc": "ESP 32でノンファイファイ三菱ACスマートを作ったに関する詳細・最新情報です。",
     "targets": [],
     "category": "hacker_news",
-    "icon": "🌐"
+    "icon": "🌐",
+    "title_ja": "ESP 32でノンファイファイ三菱ACスマートを作った",
+    "title_en": "I Made a Non-Wi-Fi Mitsubishi AC Smart with an ESP32"
   },
   {
     "title": "「AI研究者としての自分の賞味期限はあと１年」——AGI競争も終盤戦の様相を呈すシリコンバレーでは何が語られていたか｜安野貴博",
@@ -612,7 +761,9 @@
     "desc": "2026年8月、シリコンバレーとサンフランシスコで15人のAI関係者に話を聞いてきた。最先端AIをつくっている企業フロンティアラボの研究者、政策担当者、投資家、大学研究者などにインタビューを実施し、今のAI開発競争を現地の人たちがどう捉えて...",
     "targets": [],
     "category": "hatena_hot",
-    "icon": "📰"
+    "icon": "📰",
+    "title_ja": "「AI研究者としての自分の賞味期限はあと１年」——AGI競争も終盤戦の様相を呈すシリコンバレーでは何が語られていたか｜安野貴博",
+    "title_en": ""
   },
   {
     "title": "アンソロピックCEO「AIが1年内ネット乗っ取り恐れ」　開発減速訴え - 日本経済新聞",
@@ -622,7 +773,9 @@
     "desc": "【シリコンバレー=伴正春】米アンソロピックのダリオ・アモデイ最高経営責任者（CEO）は12日、人工知能（AI）業界が協調して最先端のAI開発を減速すべきだと呼びかけた。AIによる「暴走事故」が起きるなど脅威が高まっており、対応を誤れば半年か...",
     "targets": [],
     "category": "hatena_hot",
-    "icon": "📰"
+    "icon": "📰",
+    "title_ja": "アンソロピックCEO「AIが1年内ネット乗っ取り恐れ」　開発減速訴え - 日本経済新聞",
+    "title_en": ""
   },
   {
     "title": "ハワイの「かなりかわいい」深海魚、南大東島沖で発見",
@@ -632,7 +785,9 @@
     "desc": "ハワイ諸島の近海にしか生息しないと考えられていたアンコウの仲間の深海魚が、沖縄・南大東島沖で見つかった。琉球大学と海洋研究開発機構（JAMSTEC）などの研究グループが無人探査機で発見し、「シマグツ」という和名を提唱した。琉球大学理学部海洋...",
     "targets": [],
     "category": "hatena_hot",
-    "icon": "📰"
+    "icon": "📰",
+    "title_ja": "ハワイの「かなりかわいい」深海魚、南大東島沖で発見",
+    "title_en": ""
   },
   {
     "title": "増田文学案内｜はてな匿名ダイアリーの投稿目録",
@@ -642,7 +797,9 @@
     "desc": "投稿一覧はてなブックマークの「増田文学」タグを手がかりに、100ブックマーク以上の投稿から選んで掲載しています。 収録内容の最終更新：2026年9月11日...",
     "targets": [],
     "category": "hatena_hot",
-    "icon": "📰"
+    "icon": "📰",
+    "title_ja": "増田文学案内｜はてな匿名ダイアリーの投稿目録",
+    "title_en": ""
   },
   {
     "title": "非常食のカップ麺を食べた旦那に「同じ商品を補充して」と伝えても、同じものを買ってきてくれない。仕事で例えて説明しても「仕事とカップ麺は違うだろwww」と笑われる",
@@ -652,7 +809,9 @@
     "desc": "ごまま @heso_nogo_mam 旦那が、非常食のカップヌードルを小腹がすいて食べたので「同じものを在庫補充しといて」って頼んだら、カップヌードルのライトの方を買ってきたので「在庫補充の時は同じものを買ってきて欲しい」とかなり切実にお願... *(※予備軍ワードは新着エントリー等の初期シグナルに基づく推測（仮説）です)*",
     "targets": [],
     "category": "hatena_hot",
-    "icon": "📰"
+    "icon": "📰",
+    "title_ja": "非常食のカップ麺を食べた旦那に「同じ商品を補充して」と伝えても、同じものを買ってきてくれない。仕事で例えて説明しても「仕事とカップ麺は違うだろwww」と笑われる",
+    "title_en": ""
   },
   {
     "title": "iPhone Duo、36万円超でも需要絶好調？700万台出荷でiPhoneを牽引か - iPhone Mania",
@@ -662,7 +821,9 @@
     "desc": "iPhone Duoは、日本では36万円を超える高価格モデルですが、市場予想レンジの下限をわずかに下回る価格設定となっています。GF Securitiesのアナリスト、ジェフ・プー氏は、消費者の強い関心を背景に、iPhone Duoが202...",
     "targets": [],
     "category": "hatena_new",
-    "icon": "🌱"
+    "icon": "🌱",
+    "title_ja": "iPhone Duo、36万円超でも需要絶好調？700万台出荷でiPhoneを牽引か - iPhone Mania",
+    "title_en": ""
   },
   {
     "title": "「人類が至った叡智の結晶にして、夢の超技術、なんと、それをボイラーに！」水が都合の良すぎる物体だったために、人類はまだタービンを回してる",
@@ -672,7 +833,9 @@
     "desc": "ダンボール神話 @card_board1909 人類が至った叡智の結晶にして、夢の超技術・核融合。 人類をエネルギー問題から永久に救った、質量を直接変換して得られる、未だかつてなき膨大な熱量。 それをなんと 今日は ボイラーにですね x.c...",
     "targets": [],
     "category": "hatena_new",
-    "icon": "🌱"
+    "icon": "🌱",
+    "title_ja": "「人類が至った叡智の結晶にして、夢の超技術、なんと、それをボイラーに！」水が都合の良すぎる物体だったために、人類はまだタービンを回してる",
+    "title_en": ""
   },
   {
     "title": "なぜUSB Type-Cポートは壊れやすい？　Dell XPSを分解して分かった最新PCのトレンド",
@@ -682,7 +845,9 @@
     "desc": "ノートPCやスマートフォンのインタフェースとしてすっかり定着したUSB Type-Cだが、実はケーブルを挿しても認識されないといった、物理的な破損トラブルが少なくない。 特にノートPCは充電端子を兼ねるポートである場合が多く、USB Typ...",
     "targets": [],
     "category": "hatena_new",
-    "icon": "🌱"
+    "icon": "🌱",
+    "title_ja": "なぜUSB Type-Cポートは壊れやすい？　Dell XPSを分解して分かった最新PCのトレンド",
+    "title_en": ""
   },
   {
     "title": "2026年9月最新：Obsidian v1.14.0リリース — BasesのKanbanレイアウト対応とカラーハイライト標準化",
@@ -692,7 +857,9 @@
     "desc": "2026年9月に公開されたObsidian v1.14.0では、ネイティブデータベース機能「Bases」に待望のKanbanレイアウトが追加されました。「Group by」でカラムを柔軟に定義し、ドラッグ＆ドロップによる直感的なカード整理が可能です。 また、エディタ上で `==` によるカラーハイライト候補のサジェストやインラインスウォッチが標準搭載されたほか、大規模Vaultにおけるプロパティ再計算時の入力ラグが大幅に解消されるなど、日々のメモ体系化の生産性と安定性が一段と向上しています。",
     "targets": [],
     "category": "active_research",
-    "icon": "🧠"
+    "icon": "🧠",
+    "title_ja": "2026年9月最新：Obsidian v1.14.0リリース — BasesのKanbanレイアウト対応とカラーハイライト標準化",
+    "title_en": ""
   },
   {
     "title": "AGI終盤戦のシリコンバレー現地報告：再帰的自己改善（RSI）の加速とAI研究者の「賞味期限」",
@@ -702,7 +869,9 @@
     "desc": "サンフランシスコでの最先端AI研究者・政策担当者への現地取材（安野貴博氏報告）によると、現場では「AGI開発はすでに終盤戦」「自分のAI研究者としての賞味期限はあと1年」という共通認識が広がりつつあります。 AIがAI自身を改善する「再帰的自己改善（RSI）」が加速し、Anthropicのダリオ・アモデイCEOが開発減速を呼びかける一方で、国家間・企業間の開発競争力学により減速ボタンを押せない実態が浮き彫りとなっています。道具を超えた知性の急加速に対し、人間側の主体性と思考力のあり方が改めて問われています。",
     "targets": [],
     "category": "active_research",
-    "icon": "🧠"
+    "icon": "🧠",
+    "title_ja": "AGI終盤戦のシリコンバレー現地報告：再帰的自己改善（RSI）の加速とAI研究者の「賞味期限」",
+    "title_en": ""
   },
   {
     "title": "認知的オフローディング（Cognitive Offloading）の代償と自己思考の維持",
@@ -712,7 +881,9 @@
     "desc": "認知心理学において、記憶や情報処理の負荷を軽減するために外部環境（ノート、Obsidian、AI）へ思考を委ねる行為を「認知的オフローディング」と呼びます。 外部化によってワーキングメモリが解放され高次思考が可能になるメリットがある一方、過度なオフローディングは「外部にあるから自分は理解した」と錯覚する「メタ認知的過信」を生み、自力で問題の深層構造を捉える力を鈍らせるリスクが研究で示されています。 AIや外部メモに即座に頼る前に、「あえて数分間自力で問いを転がす（認知的留保）」などの意識的な摩擦（Desirable Difficulty）を挟むことが、外部ツールと共生しながら人間自身の思考力を鋭利に保つための鍵となります。",
     "targets": [],
     "category": "active_research",
-    "icon": "🧠"
+    "icon": "🧠",
+    "title_ja": "認知的オフローディング（Cognitive Offloading）の代償と自己思考の維持",
+    "title_en": ""
   },
   {
     "title": "オム プリッセ イッセイ ミヤケ 2026年秋冬コレクション - 光の輪郭や影、屈折を描く服",
@@ -722,7 +893,9 @@
     "desc": "オム プリッセ イッセイ ミヤケ(HOMME PLISSÉ ISSEY MIYAKE)の2026-27年秋冬コレクションを紹介。 光を当てたプリーツ生地を着想源に 2026-27年秋冬シーズンは、プリーツに“光”を当てることで生まれた現象から着想を得たコレクションを展開。光を受けたことでプリーツ地に...",
     "targets": [],
     "category": "new_products",
-    "icon": "🛍️"
+    "icon": "🛍️",
+    "title_ja": "オム プリッセ イッセイ ミヤケ 2026年秋冬コレクション - 光の輪郭や影、屈折を描く服",
+    "title_en": ""
   },
   {
     "title": "ユナイテッドアローズ、ハローキティの顔バッグ＆マイメロディのちょこんと顔出しポーチ",
@@ -732,7 +905,9 @@
     "desc": "ユナイテッドアローズ(UNITED ARROWS)とキデイランド(KIDDY LAND)がコラボレーション。サンリオのハローキティとマイメロディをモチーフにしたウェアやバッグ、雑貨が、2026年10月9日(金)よりユナイテッドアローズ各店舗ほかにて順次発売される。 ハローキティ＆マイメロディがファッ...",
     "targets": [],
     "category": "new_products",
-    "icon": "🛍️"
+    "icon": "🛍️",
+    "title_ja": "ユナイテッドアローズ、ハローキティの顔バッグ＆マイメロディのちょこんと顔出しポーチ",
+    "title_en": ""
   },
   {
     "title": "「ほぼ日手帳」初の旗艦店がグランスタ東京に、限定“Suicaのペンギン”手帳カバー＆キーホルダー",
@@ -742,7 +917,9 @@
     "desc": "ほぼ日手帳は、ブランド初の旗艦店「ほぼ日手帳ストア 東京駅店」を、2026年9月16日(水)、JR東京駅のエキナカ商業施設「グランスタ東京」にオープン。店舗限定として、Suicaのペンギンとのコラボレーションアイテムを発売する。 「ほぼ日手帳」初の旗艦店がグランスタ東京に 「ほぼ日手帳ストア 東京駅...",
     "targets": [],
     "category": "new_products",
-    "icon": "🛍️"
+    "icon": "🛍️",
+    "title_ja": "「ほぼ日手帳」初の旗艦店がグランスタ東京に、限定“Suicaのペンギン”手帳カバー＆キーホルダー",
+    "title_en": ""
   },
   {
     "title": "「大北海道展」濃厚味噌ラーメンや”蟹3種盛り”海鮮弁当＆富良野メロンパフェ、京急百貨店で",
@@ -752,7 +929,9 @@
     "desc": "神奈川・上大岡の京急百貨店で「第31回 大北海道展」が開催される。第1弾を2026年9月25日(金)から10月4日(日)まで、第2弾を2026年10月6日(火)から10月15日(木)まで実施する。 北海道グルメが集結「大北海道展」 「大北海道展」は、京急百貨店の開店30周年を記念して開催する北海道物...",
     "targets": [],
     "category": "new_products",
-    "icon": "🛍️"
+    "icon": "🛍️",
+    "title_ja": "「大北海道展」濃厚味噌ラーメンや”蟹3種盛り”海鮮弁当＆富良野メロンパフェ、京急百貨店で",
+    "title_en": ""
   },
   {
     "title": "ミントデザインズ 2027年春夏コレクション - ボーイスカウトの装いに見る機能美",
@@ -762,7 +941,9 @@
     "desc": "ミントデザインズ(mintdesigns)の2027年春夏コレクションが発表された。 “ボーイスカウト”の装いに着目 今季のテーマは「ドールスカウト」。ボーイスカウトから着想を得て、ブランドを象徴する「ドール」モチーフを重ね合わせたネーミングだ。スカーフやバンダナ、ポケットといったボーイスカウトのユ...",
     "targets": [],
     "category": "new_products",
-    "icon": "🛍️"
+    "icon": "🛍️",
+    "title_ja": "ミントデザインズ 2027年春夏コレクション - ボーイスカウトの装いに見る機能美",
+    "title_en": ""
   },
   {
     "title": "コンバース”レザー切り替え”の「オールスター」スニーカー、キャリーとコラボ",
@@ -772,7 +953,9 @@
     "desc": "キャリー(CALEE)とコンバース(CONVERSE)のコラボレーションによるユニセックススニーカー「オールスター エイジド OX / CL(ALL STAR AGED OX / CL)」が登場。2026年9月19日(土)より、キャリー直営店などにて発売される。 ”動き”と”負荷”に着目した「オール...",
     "targets": [],
     "category": "new_products",
-    "icon": "🛍️"
+    "icon": "🛍️",
+    "title_ja": "コンバース”レザー切り替え”の「オールスター」スニーカー、キャリーとコラボ",
+    "title_en": ""
   },
   {
     "title": "オニツカタイガー“太極拳”着想の薄底レザースニーカー「タイチ OG」アーカイブシューズを刷新",
@@ -782,7 +965,9 @@
     "desc": "オニツカタイガー(Onitsuka Tiger)は、アーカイブシューズ「タイチ(TAI-CHI)」をベースとした新作ユニセックススニーカー「タイチ OG(TAI-CHI OG)」を、2026年9月10日(木)より順次、オニツカタイガー店舗にて発売。 2003年のアーカイブ「タイチ」をアップデート 「...",
     "targets": [],
     "category": "new_products",
-    "icon": "🛍️"
+    "icon": "🛍️",
+    "title_ja": "オニツカタイガー“太極拳”着想の薄底レザースニーカー「タイチ OG」アーカイブシューズを刷新",
+    "title_en": ""
   },
   {
     "title": "ジョー マローン ロンドン26年クリスマスコフレ第2弾、“クラッカー型”香水＆ボディケアキットなど",
@@ -792,7 +977,9 @@
     "desc": "ジョー マローン ロンドン(JO MALONE LONDON)の2026年クリスマスコフレ第2弾が、2026年11月6日(金)より一部店舗ほかにて先行発売、11月13日(金)より全国発売される。 「スコットランドの古城」が舞台の2026年クリスマス ジョー マローン ロンドンの2026年クリスマスコ...",
     "targets": [],
     "category": "new_products",
-    "icon": "🛍️"
+    "icon": "🛍️",
+    "title_ja": "ジョー マローン ロンドン26年クリスマスコフレ第2弾、“クラッカー型”香水＆ボディケアキットなど",
+    "title_en": ""
   },
   {
     "title": "ドルチェ＆ガッバーナ”細身シルエット”のスニーカー「リパリ」しなやかスエード×レザー",
@@ -802,7 +989,9 @@
     "desc": "ドルチェ＆ガッバーナ(DOLCE&GABBANA)から、新作メンズスニーカー「リパリ(LIPARI)」が登場。ドルチェ＆ガッバーナのブティックなどにて発売される。 細身シルエットのスニーカー「リパリ」 新作「リパリ」は、イタリア・エオリア諸島に浮かぶリパリ島から着想を得たスニーカー。島の自然体な空気...",
     "targets": [],
     "category": "new_products",
-    "icon": "🛍️"
+    "icon": "🛍️",
+    "title_ja": "ドルチェ＆ガッバーナ”細身シルエット”のスニーカー「リパリ」しなやかスエード×レザー",
+    "title_en": ""
   },
   {
     "title": "元商社マンがドイツ6部リーグの経営幹部へ　挫折の先に見つけた没入できる仕事（後編）",
@@ -812,7 +1001,9 @@
     "desc": "ベルギーで職を失い、ビザ切れも迫るなか、途方に暮れていた前川友穂さん。そんな彼に突然かかってきたのが、サッカー元日本代表・岡崎慎司さんからの電話だった。そこから前川さんは、ドイツ6部リーグのFCバサラマインツで経営を担う現在のキャリアへと進んでいく。挫折を経てたどり着いた「没入できる仕事」とは。そし...",
     "targets": [],
     "category": "new_products",
-    "icon": "🛍️"
+    "icon": "🛍️",
+    "title_ja": "元商社マンがドイツ6部リーグの経営幹部へ　挫折の先に見つけた没入できる仕事（後編）",
+    "title_en": ""
   },
   {
     "title": "TSTSが渋谷パルコにポップアップ初出店、「オズの魔法使い」コラボバッグ限定販売",
@@ -822,7 +1013,9 @@
     "desc": "デザイナーの佐々木拓也とパタンナーの井指友里恵が手掛ける「ティーエスティーエス（TSTS）」が、ブランド初のポップアップストアを渋谷PARCOに出店する。期間は9月15日から23日まで。 このコンテンツは FASHIONSNAP が配信しています。",
     "targets": [],
     "category": "new_products",
-    "icon": "🛍️"
+    "icon": "🛍️",
+    "title_ja": "TSTSが渋谷パルコにポップアップ初出店、「オズの魔法使い」コラボバッグ限定販売",
+    "title_en": ""
   },
   {
     "title": "“肌のしぼみ感”にアプローチ　「クリニーク」がPDRN配合のクリームを発売",
@@ -832,7 +1025,9 @@
     "desc": "「クリニーク（CLINIQUE）」が、エイジングケアシリーズ「スマートリペア」から「スマート リペア CL＋PD クリーム」（50mL 1万3420円)を10月9日に発売する。 このコンテンツは FASHIONSNAP が配信しています。",
     "targets": [],
     "category": "new_products",
-    "icon": "🛍️"
+    "icon": "🛍️",
+    "title_ja": "“肌のしぼみ感”にアプローチ　「クリニーク」がPDRN配合のクリームを発売",
+    "title_en": ""
   },
   {
     "title": "新ブランド「ヴァリー オブ ムーンフラワー」始動　インドの伝統技術と日本の美意識を融合",
@@ -842,7 +1037,9 @@
     "desc": "ジュエリーブランド「シャランポワ（sharanpoi）」や「アドリン ヒュー（Adlin Hue）」を手掛ける安部真理子と、インド・ジャイプールを拠点に活動するアーティスト プリティ・プガリア（Priti Pugalia）による新ブランド「ヴァリー オブ ムーンフラワー（Valley of Moon...",
     "targets": [],
     "category": "new_products",
-    "icon": "🛍️"
+    "icon": "🛍️",
+    "title_ja": "新ブランド「ヴァリー オブ ムーンフラワー」始動　インドの伝統技術と日本の美意識を融合",
+    "title_en": ""
   },
   {
     "title": "【尾州で働く若手社員㊦】設備、待遇など課題多く",
@@ -852,7 +1049,9 @@
     "desc": "仕事の負担感、設備の老朽化、コンプライアンス意識の低さ、ロールモデルの不在なども課題に挙がった。 生徒G テキスタイルメーカーで生産現場を担っている。後輩が増え4年目の割に負担が大きい。織るのは楽しいが、数字のことも考えなければならず、苦しい。 生徒H 私も年次を重ねて数字を意識するようになり、違う...",
     "targets": [],
     "category": "new_products",
-    "icon": "🛍️"
+    "icon": "🛍️",
+    "title_ja": "【尾州で働く若手社員㊦】設備、待遇など課題多く",
+    "title_en": ""
   },
   {
     "title": "「イレニサ」の26AWコレクションをデザイナーが解説、注目アイテムをピックアップ",
@@ -862,7 +1061,9 @@
     "desc": "少しずつ秋の気配を感じられるようになった今の時期。季節の移ろいに合わせて、注目のブランドからは26AWコレクションのアイテムが続々と入荷しています。新作を目にして、新しいシーズンの装いに思いを巡らせ始めている方も多いのではないでしょうか。 そこで今回は各ブランドから届いた新作から、今のうちにチェック... *(本日の該当データはありませんでした)*",
     "targets": [],
     "category": "new_products",
-    "icon": "🛍️"
+    "icon": "🛍️",
+    "title_ja": "「イレニサ」の26AWコレクションをデザイナーが解説、注目アイテムをピックアップ",
+    "title_en": ""
   },
   {
     "title": "舞台『ジャイアント』が劇場公開、世界的児童文学作家ロアルド・ダールの“実在のスキャンダル”を描く",
@@ -872,7 +1073,9 @@
     "desc": "映画『ジャイアント』が、2026年11月19日(木)よりTOHOシネマズ 日比谷ほかにて公開される。 ロアルド・ダールの“実在のスキャンダル”を描く『ジャイアント』 『ジャイアント』は、「チャーリーとチョコレート工場」や「魔女がいっぱい」などで知られる世界的な児童文学作家ロアルド・ダールを題材にした...",
     "targets": [],
     "category": "events",
-    "icon": "🎪"
+    "icon": "🎪",
+    "title_ja": "舞台『ジャイアント』が劇場公開、世界的児童文学作家ロアルド・ダールの“実在のスキャンダル”を描く",
+    "title_en": ""
   },
   {
     "title": "仏カミーユ・ドゥ・クサックの原画40点が恵比寿に集結　陶器にペイントしたアートも",
@@ -882,7 +1085,9 @@
     "desc": "「サロン アダム エ ロペ（SALON adam et rope'）」が、アトレ恵比寿店のオープン1周年を記念したアートの展示「Camille de Cussac Exhibition」を店内で開催している。期間は10月12日まで。 このコンテンツは FASHIONSNAP が配信しています。",
     "targets": [],
     "category": "events",
-    "icon": "🎪"
+    "icon": "🎪",
+    "title_ja": "仏カミーユ・ドゥ・クサックの原画40点が恵比寿に集結　陶器にペイントしたアートも",
+    "title_en": ""
   },
   {
     "title": "「ドレスドアンドレスド」北澤武志の個展が東京で開催　“不在”を提示する作品を披露",
@@ -892,7 +1097,9 @@
     "desc": "「ドレスドアンドレスド（DRESSEDUNDRESSED）」デザイナーの北澤武志が、8月に青森県美術館で行った個展「DRESSEDUNDRESSED | 不在の肖像」の巡回展を東京・代官山の「Rodin」で開催する。会期は9月22日から27日まで。 このコンテンツは FASHIONSNAP が配信し...",
     "targets": [],
     "category": "events",
-    "icon": "🎪"
+    "icon": "🎪",
+    "title_ja": "「ドレスドアンドレスド」北澤武志の個展が東京で開催　“不在”を提示する作品を披露",
+    "title_en": ""
   },
   {
     "title": "柿本ケンサクの写真展が開催　ガラス作家の作品をレンズに用いて制作",
@@ -902,7 +1109,9 @@
     "desc": "東京・代官山のアートギャラリー「gallery ON THE HILL」が、柿本ケンサクの写真展「いつでもいま - ガラスに映す光」を代官山ヒルサイドテラス・ヒルサイドフォーラムで開催する。会期は9月23日から10月4日まで。 このコンテンツは FASHIONSNAP が配信しています。",
     "targets": [],
     "category": "events",
-    "icon": "🎪"
+    "icon": "🎪",
+    "title_ja": "柿本ケンサクの写真展が開催　ガラス作家の作品をレンズに用いて制作",
+    "title_en": ""
   },
   {
     "title": "のん＆橋本愛が『あまちゃん』の舞台・久慈で13年ぶりに歌唱共演。2人のコメントも到着",
@@ -912,7 +1121,9 @@
     "desc": "のん10周年、デビュー20周年というダブルアニバーサリープロジェクト『のん10≧20（のんテントゥエンティ）』の一環となる周年記念ライブツアー『のん自由（10）ツアー2026』10月18日の岩手・久慈公演（十文字チキンアンバーホール）に、橋本愛がスペシャルゲストとして出演することが決定した。",
     "targets": [],
     "category": "events",
-    "icon": "🎪"
+    "icon": "🎪",
+    "title_ja": "のん＆橋本愛が『あまちゃん』の舞台・久慈で13年ぶりに歌唱共演。2人のコメントも到着",
+    "title_en": ""
   },
   {
     "title": "イ・チャンドン監督8年ぶり新作映画『もしもの愛』Netflix配信に先駆け一部劇場で先行公開",
@@ -922,7 +1133,9 @@
     "desc": "Netflix映画『もしもの愛』が、11月6日のNetflix独占配信に先駆け10月23日より一部劇場で先行公開。",
     "targets": [],
     "category": "events",
-    "icon": "🎪"
+    "icon": "🎪",
+    "title_ja": "イ・チャンドン監督8年ぶり新作映画『もしもの愛』Netflix配信に先駆け一部劇場で先行公開",
+    "title_en": ""
   },
   {
     "title": "民謡クルセイダーズが台湾の音楽フェスに出演。最南端・恒春半島で民謡文化を体験できるイベントが10月に開催",
@@ -932,7 +1145,9 @@
     "desc": "台湾最南端・恒春（こうしゅん）半島で、今も台湾の日常に息づく民謡文化を体験できるイベント『Hengchun Peninsula Folk Month』が10月から、約1か月間にわたって初開催される。",
     "targets": [],
     "category": "events",
-    "icon": "🎪"
+    "icon": "🎪",
+    "title_ja": "民謡クルセイダーズが台湾の音楽フェスに出演。最南端・恒春半島で民謡文化を体験できるイベントが10月に開催",
+    "title_en": ""
   },
   {
     "title": "スピッツ18作目アルバム『kettle』11月25日リリース。来年3月より全国ツアー開催",
@@ -942,7 +1157,9 @@
     "desc": "スピッツ18作目のオリジナルアルバム『kettle』が11月25日にリリース。",
     "targets": [],
     "category": "events",
-    "icon": "🎪"
+    "icon": "🎪",
+    "title_ja": "スピッツ18作目アルバム『kettle』11月25日リリース。来年3月より全国ツアー開催",
+    "title_en": ""
   },
   {
     "title": "草間彌生の素顔と創作に迫るドキュメンタリー映画『≒草間彌生 わたし大好き』の追悼上映が決定",
@@ -952,7 +1169,9 @@
     "desc": "8月14日に逝去した草間彌生を偲んでドキュメンタリー映画『≒草間彌生 わたし大好き』の追悼上映が決定。",
     "targets": [],
     "category": "events",
-    "icon": "🎪"
+    "icon": "🎪",
+    "title_ja": "草間彌生の素顔と創作に迫るドキュメンタリー映画『≒草間彌生 わたし大好き』の追悼上映が決定",
+    "title_en": ""
   },
   {
     "title": "『TAMATAMA FESTIVAL 2026』音楽ステージのタイムテーブル公開。goetheの出演も発表",
@@ -962,7 +1181,9 @@
     "desc": "NiEWと京王電鉄が共催するポップカルチャーの文化祭『TAMATAMA FESTIVAL 2026』の音楽ステージのタイムテーブル、最終追加アーティストが発表された。",
     "targets": [],
     "category": "events",
-    "icon": "🎪"
+    "icon": "🎪",
+    "title_ja": "『TAMATAMA FESTIVAL 2026』音楽ステージのタイムテーブル公開。goetheの出演も発表",
+    "title_en": ""
   },
   {
     "title": "尾野真千子が朝ドラ『ブラッサム』に出演。吉屋信子がモデルの作家役",
@@ -972,7 +1193,9 @@
     "desc": "尾野真千子がNHK2026年度後期連続テレビ小説『ブラッサム』に出演することが発表された。",
     "targets": [],
     "category": "events",
-    "icon": "🎪"
+    "icon": "🎪",
+    "title_ja": "尾野真千子が朝ドラ『ブラッサム』に出演。吉屋信子がモデルの作家役",
+    "title_en": ""
   },
   {
     "title": "『映画 九条の大罪』に黒木華、鳴海唯、渋川清彦らが「悪の生態系」に関わるキャストとして出演",
@@ -982,7 +1205,9 @@
     "desc": "『映画 九条の大罪』の新キャストが発表された。",
     "targets": [],
     "category": "events",
-    "icon": "🎪"
+    "icon": "🎪",
+    "title_ja": "『映画 九条の大罪』に黒木華、鳴海唯、渋川清彦らが「悪の生態系」に関わるキャストとして出演",
+    "title_en": ""
   },
   {
     "title": "Netflix『あいの里』シーズン3が10月6日配信スタート。舞台は富士山のふもと",
@@ -992,7 +1217,9 @@
     "desc": "Netflixリアリティシリーズ『あいの里』シーズン3が10月6日より毎週火曜、5週にわたって世界独占配信。",
     "targets": [],
     "category": "events",
-    "icon": "🎪"
+    "icon": "🎪",
+    "title_ja": "Netflix『あいの里』シーズン3が10月6日配信スタート。舞台は富士山のふもと",
+    "title_en": ""
   },
   {
     "title": "9月25日開催『exPoP!!!!!』に水平線、生活の設計、WENDY、お風呂と街灯、橋本薫が出演",
@@ -1002,7 +1229,9 @@
     "desc": "NiEWが贈る入場無料の音楽イベント『exPoP!!!!! vol.188』が9月25日に渋谷のSpotify O-nestで開催される。",
     "targets": [],
     "category": "events",
-    "icon": "🎪"
+    "icon": "🎪",
+    "title_ja": "9月25日開催『exPoP!!!!!』に水平線、生活の設計、WENDY、お風呂と街灯、橋本薫が出演",
+    "title_en": ""
   },
   {
     "title": "『ゼルダの伝説』実写映画のタイトルが決定。2027年4月30日公開",
@@ -1012,7 +1241,9 @@
     "desc": "1986年から続くアクションアドベンチャーゲームシリーズ『ゼルダの伝説』を扱った実写映画のタイトルが『ゼルダの伝説』（英語：THE LEGEND OF ZELDA）に決定。 *(本日の該当データはありませんでした)*",
     "targets": [],
     "category": "events",
-    "icon": "🎪"
+    "icon": "🎪",
+    "title_ja": "『ゼルダの伝説』実写映画のタイトルが決定。2027年4月30日公開",
+    "title_en": ""
   },
   {
     "title": "今川琢也による新ブランド「アシュベル」始動　代々木上原に旗艦店オープン",
@@ -1022,7 +1253,9 @@
     "desc": "海外コレクションブランドでデザイン企画の経験を積んだ今川琢也が、新メンズブランド「アシュベル（ASHBELL）」を9月13日に始動する。運営は三原康裕が代表を務めるソスウ（SOSU）が担当。同日、東京・代々木上原に旗艦店をオープンする。 このコンテンツは FASHIONSNAP が配信しています。",
     "targets": [],
     "category": "projects",
-    "icon": "🚀"
+    "icon": "🚀",
+    "title_ja": "今川琢也による新ブランド「アシュベル」始動　代々木上原に旗艦店オープン",
+    "title_en": ""
   },
   {
     "title": "大坂なおみは何を着た？　全米オープンカスタム入場ルックまとめ",
@@ -1032,7 +1265,9 @@
     "desc": "ニューヨークのUSTAビリー・ジーン・キング・ナショナル・テニス・センターで開催されている、テニスの4大大会の一つ「全米オープン」。大坂なおみ選手は、8月31日の初戦から9月7日の4回戦まで、試合ごとに異なる入場ルックを披露し注目を集めた。 今大会では、ゼンデイヤ（Zendaya）らを手掛けるスタイ...",
     "targets": [],
     "category": "projects",
-    "icon": "🚀"
+    "icon": "🚀",
+    "title_ja": "大坂なおみは何を着た？　全米オープンカスタム入場ルックまとめ",
+    "title_en": ""
   },
   {
     "title": "【本日開業】平日は事務職、日曜は台湾食堂。世界を旅した夫婦が富士見ヶ丘で「紅子家」をオープン。吉野家HDグループ/株式会社シェアレストラン2時間前",
@@ -1042,27 +1277,33 @@
     "desc": "新商品プレスリリース: 【本日開業】平日は事務職、日曜は台湾食堂。世界を旅した夫婦が富士見ヶ丘で「紅子家」をオープン。吉野家HDグループ/株式会社シェアレストラン2時間前",
     "targets": [],
     "category": "projects",
-    "icon": "🚀"
+    "icon": "🚀",
+    "title_ja": "【本日開業】平日は事務職、日曜は台湾食堂。世界を旅した夫婦が富士見ヶ丘で「紅子家」をオープン。吉野家HDグループ/株式会社シェアレストラン2時間前",
+    "title_en": ""
   },
   {
     "title": "【エニタイムフィットネス 国内の会員数120万人突破】グランドオープンの西小山店が世界6,000店舗目で達成！株式会社Fast Fitness Japan2時間前",
     "url": "https://www.atpress.ne.jp/news/3931126",
     "publisher": "AtPress (プロジェクト・経営情報)",
     "extra": "(AtPress (プロジェクト・経営情報))",
-    "desc": "新商品プレスリリース: 【エニタイムフィットネス 国内の会員数120万人突破】グランドオープンの西小山店が世界6,000店舗目で達成！株式会社Fast Fitness Japan2時間前",
+    "desc": "ログイン/会員登録新着エンタメグルメ旅行ファッション・美容ライフスタイルスポーツビジネステックモバイル乗り物クラファン株式会社Fast Fitness Japan発行者のリリースを見るリリース一覧[{\"@context\":\"https://schema.org\",\"@type\":\"NewsArticle\",\"name\":\"アットプレス\",\"inLanguage\":\"ja\",\"mainEntityO",
     "targets": [],
     "category": "projects",
-    "icon": "🚀"
+    "icon": "🚀",
+    "title_ja": "【エニタイムフィットネス 国内の会員数120万人突破】グランドオープンの西小山店が世界6,000店舗目で達成！株式会社Fast Fitness Japan2時間前",
+    "title_en": ""
   },
   {
     "title": "bilawalsidhu/gods-eye-view",
     "url": "https://github/bilawalsidhu/gods-eye-view",
     "publisher": "GitHub Trending (注目プロジェクト)",
     "extra": "(GitHub Trending (注目プロジェクト))",
-    "desc": "A spy satellite simulator in your browser, except the data is real. Live open source spatial intelligence on a photorealistic 3D globe.",
+    "desc": "データが本物であることを除いて、ブラウザのスパイ衛星シミュレータ。フォトリアリスティックな3 D地球儀でオープンソースの空間インテリジェンスをライブ配信。",
     "targets": [],
     "category": "projects",
-    "icon": "🚀"
+    "icon": "🚀",
+    "title_ja": "bilawalsidhu/gods - eye - view",
+    "title_en": "bilawalsidhu/gods-eye-view"
   },
   {
     "title": "melgarafael/DeskcommCRM",
@@ -1072,37 +1313,45 @@
     "desc": "Open-source AI sales OS — self-hosted CRM with native AI agents + WhatsApp (WAHA). Open alternative to Kommo, Octadesk &amp; Intercom for any business that sells by chat. MCP-ready, multi-tenant, LGPD.",
     "targets": [],
     "category": "projects",
-    "icon": "🚀"
+    "icon": "🚀",
+    "title_ja": "melgarafael/DeskcommCRM",
+    "title_en": "melgarafael/DeskcommCRM"
   },
   {
     "title": "asgeirtj/system_prompts_leaks",
     "url": "https://github/asgeirtj/system_prompts_leaks",
     "publisher": "GitHub Trending (注目プロジェクト)",
     "extra": "(GitHub Trending (注目プロジェクト))",
-    "desc": "Extracted system prompts from Anthropic - Claude Fable 5.1, Opus 5, Claude Design, Claude Code. OpenAI - ChatGPT GPT-6-Astra, Codex. Google - Gemini 3.8 Flash, 3.1 Pro, Antigravity. xAI - Grok, Grok Bot, Cursor, Kimi and more! Updated regularly.",
+    "desc": "Anthropic - Claude Fable 5.1、Opus 5、Claude Design、Claude Codeからシステムプロンプトを抽出。OpenAI - ChatGPT GPT -6 - Astra、コーデックス。Google - Gemini 3.8 Flash、3.1 Pro、Antigravity。xAI - Grok、Grok Bot、Cursor、Kimiなど！定期的に更新されます。",
     "targets": [],
     "category": "projects",
-    "icon": "🚀"
+    "icon": "🚀",
+    "title_ja": "asgeirtj/system_prompts_leaks",
+    "title_en": "asgeirtj/system_prompts_leaks"
   },
   {
     "title": "nab138/iloader",
     "url": "https://github/nab138/iloader",
     "publisher": "GitHub Trending (注目プロジェクト)",
     "extra": "(GitHub Trending (注目プロジェクト))",
-    "desc": "User friendly sideloader",
+    "desc": "ユーザーフレンドリーなサイドローダー",
     "targets": [],
     "category": "projects",
-    "icon": "🚀"
+    "icon": "🚀",
+    "title_ja": "nab 138/iloader",
+    "title_en": "nab138/iloader"
   },
   {
     "title": "Flowseal/zapret-discord-youtube",
     "url": "https://github/Flowseal/zapret-discord-youtube",
     "publisher": "GitHub Trending (注目プロジェクト)",
     "extra": "(GitHub Trending (注目プロジェクト))",
-    "desc": "Trending GitHub Project",
+    "desc": "トレンドGitHubプロジェクト",
     "targets": [],
     "category": "projects",
-    "icon": "🚀"
+    "icon": "🚀",
+    "title_ja": "Flowseal/zapret - discord - youtube",
+    "title_en": "Flowseal/zapret-discord-youtube"
   },
   {
     "title": "jihe520/MathModelAgent",
@@ -1112,47 +1361,57 @@
     "desc": "🤖📐专为数学建模设计的 Agent &amp; skills ,自动完成数学建模，生成一份完整的可以直接提交的论文。 An Agent Designed for Mathematical Modeling ,Automatically complete mathmodel and generate a complete paper ready for submission.",
     "targets": [],
     "category": "projects",
-    "icon": "🚀"
+    "icon": "🚀",
+    "title_ja": "jihe 520/MathModelAgent",
+    "title_en": "jihe520/MathModelAgent"
   },
   {
     "title": "Sonarr/Sonarr",
     "url": "https://github/Sonarr/Sonarr",
     "publisher": "GitHub Trending (注目プロジェクト)",
     "extra": "(GitHub Trending (注目プロジェクト))",
-    "desc": "Smart PVR for newsgroup and bittorrent users.",
+    "desc": "ニュースグループとBitTorrentユーザー向けのスマートPVR。",
     "targets": [],
     "category": "projects",
-    "icon": "🚀"
+    "icon": "🚀",
+    "title_ja": "Sonarr/Sonarr",
+    "title_en": "Sonarr/Sonarr"
   },
   {
     "title": "alsk1992/CloddsBot",
     "url": "https://github/alsk1992/CloddsBot",
     "publisher": "GitHub Trending (注目プロジェクト)",
     "extra": "(GitHub Trending (注目プロジェクト))",
-    "desc": "Open Source AI trading agent that operates autonomously across 1000+ markets - Polymarket, Kalshi, Binance, Hyperliquid, Solana DEXs, 5 EVM chains. Scans for edge, executes instantly, manages risk while you sleep. Agent commerce protocol for machine-to-machine payments. Self-hosted. Built on Claude.",
+    "desc": "Polymarket、Kalshi、Binance、Hyperliquid、Solana DEXs、5つのEVMチェーンなど、1000以上の市場で自律的に動作するオープンソースのAIトレーディングエージェント。エッジをスキャンし、即座に実行し、睡眠中にリスクを管理します。マシンのエージェントコマースプロトコル-",
     "targets": [],
     "category": "projects",
-    "icon": "🚀"
+    "icon": "🚀",
+    "title_ja": "alsk 1992/CloddsBot",
+    "title_en": "alsk1992/CloddsBot"
   },
   {
     "title": "yuliskov/SmartTube",
     "url": "https://github/yuliskov/SmartTube",
     "publisher": "GitHub Trending (注目プロジェクト)",
     "extra": "(GitHub Trending (注目プロジェクト))",
-    "desc": "Browse media content with your own rules on Android TV",
+    "desc": "Android TVで独自のルールでメディアコンテンツを閲覧",
     "targets": [],
     "category": "projects",
-    "icon": "🚀"
+    "icon": "🚀",
+    "title_ja": "yuliskov/SmartTube",
+    "title_en": "yuliskov/SmartTube"
   },
   {
     "title": "Shubhamsaboo/awesome-llm-apps",
     "url": "https://github/Shubhamsaboo/awesome-llm-apps",
     "publisher": "GitHub Trending (注目プロジェクト)",
     "extra": "(GitHub Trending (注目プロジェクト))",
-    "desc": "100+ AI Agents, Agent Skills and RAG Apps - Free and Open Source.",
+    "desc": "100以上のAIエージェント、エージェントスキル、RAGアプリ-無料でオープンソース。",
     "targets": [],
     "category": "projects",
-    "icon": "🚀"
+    "icon": "🚀",
+    "title_ja": "Shubhamsaboo/awesome - lllm - apps",
+    "title_en": "Shubhamsaboo/awesome-llm-apps"
   },
   {
     "title": "該当する施行はありませんでした",
@@ -1162,68 +1421,70 @@
     "desc": "*(※前日公布・施行の対象法令はありませんでした)*",
     "targets": [],
     "category": "laws",
-    "icon": "⚖️"
+    "icon": "⚖️",
+    "title_ja": "該当する施行はありませんでした",
+    "title_en": ""
   }
 ];
     const categoryMeta = {
   "google_trends": {
     "label": "Google Trends",
-    "bg": "rgba(239, 68, 68, 0.1)",
+    "bg": "rgba(239, 68, 68, 0.15)",
     "color": "#ef4444",
     "icon": "🔍"
   },
   "hacker_news": {
     "label": "Hacker News",
-    "bg": "rgba(249, 115, 22, 0.1)",
+    "bg": "rgba(249, 115, 22, 0.15)",
     "color": "#f97316",
     "icon": "🌐"
   },
   "hatena_hot": {
     "label": "はてな人気",
-    "bg": "rgba(59, 130, 246, 0.1)",
+    "bg": "rgba(59, 130, 246, 0.15)",
     "color": "#3b82f6",
     "icon": "📰"
   },
   "hatena_new": {
     "label": "はてな新着(予備軍)",
-    "bg": "rgba(14, 165, 233, 0.1)",
+    "bg": "rgba(14, 165, 233, 0.15)",
     "color": "#0ea5e9",
     "icon": "🌱"
   },
   "active_research": {
     "label": "関心領域リサーチ",
-    "bg": "rgba(168, 85, 247, 0.1)",
+    "bg": "rgba(168, 85, 247, 0.15)",
     "color": "#a855f7",
     "icon": "🧠"
   },
   "adjacent_research": {
     "label": "隣接領域リサーチ",
-    "bg": "rgba(236, 72, 153, 0.1)",
+    "bg": "rgba(236, 72, 153, 0.15)",
     "color": "#ec4899",
     "icon": "🌌"
   },
   "new_products": {
     "label": "新商品",
-    "bg": "rgba(16, 185, 129, 0.1)",
+    "bg": "rgba(16, 185, 129, 0.15)",
     "color": "#10b981",
     "icon": "🛍️"
   },
   "events": {
     "label": "イベント発表",
-    "bg": "rgba(245, 158, 11, 0.1)",
+    "bg": "rgba(245, 158, 11, 0.15)",
     "color": "#f59e0b",
     "icon": "🎪"
   },
   "projects": {
     "label": "プロジェクト発表",
-    "bg": "rgba(99, 102, 241, 0.1)",
+    "bg": "rgba(99, 102, 241, 0.15)",
     "color": "#6366f1",
     "icon": "🚀"
   },
   "laws": {
     "label": "法令の施行",
-    "bg": "rgba(107, 114, 128, 0.1)",
-    "color": "#9ca3af",
+    "bg": "rgba(148, 163, 184, 0.15)",
+    "color": "#94a3b8",
     "icon": "⚖️"
   }
 };
@@ -1245,10 +1506,10 @@
     const searchInput = document.getElementById('searchInput');
     const categoryFilters = document.getElementById('categoryFilters');
     const targetFilters = document.getElementById('targetFilters');
+    const resultsCount = document.getElementById('resultsCount');
 
     // Create Category Filter Buttons dynamically based on active tab
     function updateCategoryFilters() {
-      // Keep "All" button
       categoryFilters.innerHTML = '<button class="filter-btn active" data-category="all">すべて</button>';
       
       const allowedCategories = tabConfig[activeTab];
@@ -1268,111 +1529,133 @@
       activeCategory = 'all';
     }
 
-    // Render Cards Grouped by Category (Breakdown Style)
+    // Render Records in List Layout (Proposal A)
     function renderDashboard() {
       dashboardSections.innerHTML = '';
       const allowedCategories = tabConfig[activeTab];
       
-      // 1. Filter items globally
+      // 1. Filter items
       const filtered = items.filter(item => {
-        // Filter by current Tab's categories
         if (!allowedCategories.includes(item.category)) return false;
-        
-        // Filter by Sub-category pill
         if (activeCategory !== 'all' && item.category !== activeCategory) return false;
         
-        // Filter by target audience
         if (activeTarget !== 'all') {
           if (!item.targets || !item.targets.includes(activeTarget)) return false;
         }
         
-        // Filter by search query
         if (searchQuery) {
           const q = searchQuery.toLowerCase();
+          const titleJaMatch = item.title_ja && item.title_ja.toLowerCase().includes(q);
+          const titleEnMatch = item.title_en && item.title_en.toLowerCase().includes(q);
           const titleMatch = item.title && item.title.toLowerCase().includes(q);
           const descMatch = item.desc && item.desc.toLowerCase().includes(q);
           const pubMatch = item.publisher && item.publisher.toLowerCase().includes(q);
-          if (!titleMatch && !descMatch && !pubMatch) return false;
+          if (!titleJaMatch && !titleEnMatch && !titleMatch && !descMatch && !pubMatch) return false;
         }
         
         return true;
       });
 
+      // Update Result Count
+      resultsCount.innerHTML = `表示中: <strong>${filtered.length}</strong> 件`;
+
       if (filtered.length === 0) {
         dashboardSections.innerHTML = `
           <div class="empty-state">
             <div class="empty-state-icon">📭</div>
-            <h3>該当するトピックが見つかりません</h3>
-            <p>検索ワードやフィルター条件を変更してください。</p>
+            <h3>該当するニュース・情報が見つかりません</h3>
+            <p>検索キーワードや対象層、カテゴリフィルターの条件を変更してお試しください。</p>
           </div>
         `;
         return;
       }
 
-      // 2. Render sections based on active category selection
+      // 2. Render sections
       const categoriesToRender = activeCategory === 'all' 
         ? allowedCategories 
         : [activeCategory];
 
       categoriesToRender.forEach(cat => {
         const catItems = filtered.filter(item => item.category === cat);
-        if (catItems.length === 0) return; // Skip empty categories
+        if (catItems.length === 0) return;
 
-        const meta = categoryMeta[cat] || { label: 'その他', bg: 'rgba(255,255,255,0.05)', color: '#fff', icon: '📝' };
+        const meta = categoryMeta[cat] || { label: 'その他', bg: 'rgba(255,255,255,0.08)', color: '#fff', icon: '📝' };
 
-        // Create Section
         const section = document.createElement('div');
         section.className = 'category-section';
 
-        // Section Title
         section.innerHTML = `
           <div class="category-section-title">
-            ${meta.icon} ${meta.label} <span class="count">${catItems.length}</span>
+            ${meta.icon} ${meta.label} <span class="count">${catItems.length}件</span>
           </div>
         `;
 
-        // Card Grid
-        const grid = document.createElement('div');
-        grid.className = 'grid';
+        const recordList = document.createElement('div');
+        recordList.className = 'record-list';
 
-        // Add Cards
         catItems.forEach(item => {
-          const card = document.createElement('div');
-          card.className = 'card';
+          const row = document.createElement('div');
+          row.className = 'record-row';
+          row.style.setProperty('--cat-accent', meta.color);
 
+          // Target audience badges
           const targetHTML = item.targets && item.targets.length > 0
             ? item.targets.map(t => `<span class="target-badge">${t}</span>`).join('')
             : '';
 
-          const pubLabel = item.publisher 
-            ? `🌐 ${item.publisher}` 
-            : (item.extra && !item.extra.includes('検索数:') ? item.extra : '');
+          // Publisher & Extra
+          const pubLabel = item.publisher ? item.publisher : '';
+          const hasTraffic = item.extra && item.extra.includes('検索数:');
 
+          // Title & Original Title
+          const displayTitle = item.title_ja || item.title;
+          const origTitle = item.title_en;
+
+          // Source button
           const linkHTML = item.url
-            ? `<a href="${item.url}" target="_blank" rel="noopener noreferrer" class="source-link-btn">ソースを開く ↗</a>`
+            ? `<a href="${item.url}" target="_blank" rel="noopener noreferrer" class="source-btn">記事を開く ↗</a>`
             : '';
 
-          card.innerHTML = `
-            <div class="card-header">
-              <span class="source-badge" style="background: ${meta.bg}; color: ${meta.color};">
-                ${meta.icon} ${meta.label}
-              </span>
-              ${item.extra && item.extra.includes('検索数:') ? `<span class="extra-badge">${item.extra}</span>` : ''}
+          row.innerHTML = `
+            <div class="record-content">
+              <div class="record-meta-row">
+                <span class="cat-badge" style="background: ${meta.bg}; color: ${meta.color};">
+                  ${meta.icon} ${meta.label}
+                </span>
+                ${hasTraffic ? `<span class="extra-tag">${item.extra}</span>` : ''}
+                ${pubLabel ? `<span class="publisher-tag">🌐 ${pubLabel}</span>` : ''}
+              </div>
+
+              <h3 class="record-title">
+                ${item.url 
+                  ? `<a href="${item.url}" target="_blank" rel="noopener noreferrer">${displayTitle}</a>` 
+                  : displayTitle}
+              </h3>
+
+              ${origTitle ? `
+                <div class="record-original-title">
+                  <span class="orig-label">原文</span>
+                  <span>${origTitle}</span>
+                </div>
+              ` : ''}
+
+              <div class="record-summary">
+                ${item.desc || '（詳細要約はありません）'}
+              </div>
             </div>
-            <h3 class="card-title">${item.title}</h3>
-            <p class="card-desc">${item.desc || '（詳細要約はありません）'}</p>
-            <div class="card-footer">
-              <span class="publisher-label" title="${pubLabel}">${pubLabel}</span>
-              <div class="target-badges" style="margin-right: 8px;">
+
+            <div class="record-actions">
+              <div class="target-badges">
                 ${targetHTML}
               </div>
               ${linkHTML}
             </div>
           `;
-          grid.appendChild(card);
+
+          recordList.appendChild(row);
         });
 
-        section.appendChild(grid);
+        section.appendChild(recordList);
         dashboardSections.appendChild(section);
       });
     }
@@ -1412,6 +1695,7 @@
       renderDashboard();
     });
 
+    // Event Listener for Search Input
     searchInput.addEventListener('input', (e) => {
       searchQuery = e.target.value;
       renderDashboard();
